@@ -94,11 +94,12 @@ Updates were installed, but a DNS resolution error occurred. This was identified
   ~~~
 ## Final Testing and Backup
 
-With the Pwnagotchi fully functional, it was tested to ensure it could capture WiFi handshakes and provide access via the web GUI. The `.pcap` files could be downloaded directly from the web interface, and plugins enabled hash cracking using tools like hashcat.
+With the Pwnagotchi fully functional, it was tested to ensure it could capture WiFi handshakes and provide access via the web GUI. The `.pcap` files could be downloaded directly from the web interface, and plugins enabled online hash cracking using `wpa-sec` to perform this task automatically when internet is available to the pwnagotchi.
 
 As a final step, a backup of the setup was created using Win32 Disk Imager:
 
   # Using Win32 Disk Imager to create a backup image
+  - The GUI for Win32 Disk Imager is self explanatory but unintuitive and will provide you with a full `.img` disk image roughly the size of the micro SD cards capacity.
 
 This completed the setup, providing a fully functional and portable stealth Pwnagotchi system. Power is provided via a battery bank and the whole setup fits conveniently in a pocket or backpack.
 
