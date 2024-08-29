@@ -9,6 +9,12 @@ The goal of this project was to set up a headless Pwnagotchi using a Raspberry P
 - **Pwnagotchi Build Compatible with RPi Zero 2 W:** [GitHub Repo](https://github.com/jayofelony/pwnagotchi)
 - **Custom Pwnagotchi Plugins:** [Custom Plugins Repo](https://github.com/SHUR1K-N/Project-Pwnag0dchi)
 
+
+
+![pwnagotchi](https://github.com/AdamHayball/RPiZero2W-Pwnagotchi/blob/main/pwnyboi.png)
+
+
+
 ## Initial Setup
 
 The process began by flashing the Pwnagotchi image to a micro SD card using Balena Etcher. With the image flashed, the next step was configuring the system to fit the intended use case.
@@ -96,4 +102,3 @@ As a final step, a backup of the setup was created using Win32 Disk Imager:
 
 This completed the setup, providing a fully functional and portable stealth Pwnagotchi system. Power is provided via a battery bank and the whole setup fits conveniently in a pocket or backpack.
 
-![pwnagotchi](https://github.com/AdamHayball/RPiZero2W-Pwnagotchi/blob/main/pwnyboi.png)
