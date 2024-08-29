@@ -23,7 +23,7 @@ The process began by flashing the Pwnagotchi image to a micro SD card using Bale
 
 The configuration file, located at `/etc/pwnagotchi/config.toml`, was set up with the following parameters:
 - Custom device name
-- Whitelist for trusted devices
+- Whitelist for trusted networks
 - Enabling Android Bluetooth tethering
 
 The initial setup seemed straightforward until connectivity issues arose.
