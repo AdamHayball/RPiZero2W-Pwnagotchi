@@ -1,5 +1,7 @@
 # RPiZero2W-Pwnagotchi
 
+![pwnagotchi](https://github.com/AdamHayball/RPiZero2W-Pwnagotchi/blob/main/pwnyboi.png)
+
 The goal of this project was to set up a headless Pwnagotchi using a Raspberry Pi Zero 2 W, aiming for a more stealthy and portable build. This documentation is not intended as a guide, but rather to detail the challenges encountered during the setup and the methods used to overcome them.
 
 ## Bill of Materials
