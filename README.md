@@ -41,7 +41,7 @@ Bluetooth tethering posed its own set of problems: the Pi would connect to my An
 ### Steps Taken
 
 - Attempted to manually pair and trust the phone with the Pi:
-  '''bash
+  ~~~
   bluetoothctl
   agent on
   default-agent
@@ -49,7 +49,7 @@ Bluetooth tethering posed its own set of problems: the Pi would connect to my An
   pair <device_mac_address>
   trust <device_mac_address>
   connect <device_mac_address>
-  '''
+  ~~~
 Despite these steps, no BNEP (Bluetooth Network Encapsulation Protocol) adapter was showing up. It appeared that the network setup was not being completed correctly.
 
 A review of the phone’s tether settings revealed that Bluetooth tethering was turned off. After re-enabling it and redoing the pairing and trusting process, the BNEP adapter finally appeared, and the Pi was accessible over Bluetooth.
@@ -63,9 +63,9 @@ Returning to the fresh Windows 11 machine, I repeated the process with the corre
 ## Achieving Portable Access
 
 The portability requirement meant that accessing the Pwnagotchi via a phone was essential. Initially, the Bluetooth connection to the phone was unstable. After verifying and adjusting the network adapters on the Pi, I confirmed that the connection was working as expected:
-  '''bash
+  ~~~
   ifconfig -a
-  '''
+  ~~~
 With the BNEP adapter visible and using the configured IP address, I disconnected the Ethernet over USB, rebooted with only power on the Pi, and confirmed that the web service was accessible via Bluetooth tethering on my phone.
 
 ## Adding Custom Features and Plugins
@@ -76,17 +76,17 @@ Having established basic functionality, the next step was to customize the Pwnag
   # Navigate to the appropriate directories and upload custom plugins
 
 Initially, access to certain directories over SFTP was restricted. Attempts to log in as root revealed incorrect passwords. After resetting the passwords and making necessary configuration changes, the new plugins were successfully added, and the `config.toml` file was updated:
-  '''bash
+  ~~~
   nano /etc/pwnagotchi/config.toml
-  '''
+  ~~~
 The Pwnagotchi rebooted with the new configuration, but the device name was incorrect. Verifying and updating the hostname resolved this issue:
-  '''bash
+  ~~~
   hostnamectl set-hostname <new_hostname>
-  '''
+  ~~~
 Updates were installed, but a DNS resolution error occurred. This was identified as a local nameserver misconfiguration. After fixing the nameserver settings, the Pwnagotchi operated correctly:
-  '''bash
+  ~~~
   nano /etc/resolv.conf
-  '''
+  ~~~
 ## Final Testing and Backup
 
 With the Pwnagotchi fully functional, it was tested to ensure it could capture WiFi handshakes and provide access via the web GUI. The `.pcap` files could be downloaded directly from the web interface, and plugins enabled hash cracking using tools like hashcat.
