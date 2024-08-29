@@ -4,10 +4,10 @@ The goal of this project was to set up a headless Pwnagotchi using a Raspberry P
 
 ## Bill of Materials
 
-- **Raspberry Pi Zero 2 W:** [Microcenter Link](https://www.microcenter.com/product/643085/raspberry-pi-zero-2-w)
-- **16GB+ UHS1 or Better Micro SD Card:** [Amazon Link](https://www.amazon.com/Professional-verified-Amazon-MicroSDHC-Certified/dp/B07BYSZP73)
-- **Pwnagotchi Build Compatible with RPi Zero 2 W:** [GitHub Repository](https://github.com/jayofelony/pwnagotchi)
-- **Custom Plugins:** [Custom Plugins Repository](https://github.com/SHUR1K-N/Project-Pwnag0dchi)
+- **Raspberry Pi Zero 2 W:** [Microcenter](https://www.microcenter.com/product/643085/raspberry-pi-zero-2-w)
+- **16GB+ UHS1 or Better Micro SD Card:** [Amazon](https://www.amazon.com/Professional-verified-Amazon-MicroSDHC-Certified/dp/B07BYSZP73)
+- **Pwnagotchi Build Compatible with RPi Zero 2 W:** [GitHub Repo](https://github.com/jayofelony/pwnagotchi)
+- **Custom Pwnagotchi Plugins:** [Custom Plugins Repo](https://github.com/SHUR1K-N/Project-Pwnag0dchi)
 
 ## Initial Setup
 
@@ -28,7 +28,7 @@ The first challenge surfaced when attempting to connect the Pi using RNDIS Gadge
 
 ### Troubleshooting Steps
 
-- Confirmed that the `dtoverlay` and necessary modules were correctly configured.
+- Confirmed that the `dtoverlay` and necessary modules were correctly configured in `/boot/config.txt` and `/boot/cmdline.txt`.
 - Attempted to manually install the RNDIS driver from the Windows driver catalog, but the process was hindered by driver signing issues.
 - Even in Safe Mode, forcing the application of the driver didn’t resolve the issue.
 
@@ -40,25 +40,24 @@ Bluetooth tethering posed its own set of problems: the Pi would connect to my An
 
 ### Steps Taken
 
+- Enabled tethering on the phone and attempted auto connection by editing `/etc/pwnagotchi/config.toml` via terminal, this did not work.
 - Attempted to manually pair and trust the phone with the Pi:
   ~~~
   bluetoothctl
-  agent on
-  default-agent
   scan on
   pair <device_mac_address>
   trust <device_mac_address>
   connect <device_mac_address>
   ~~~
-Despite these steps, no BNEP (Bluetooth Network Encapsulation Protocol) adapter was showing up. It appeared that the network setup was not being completed correctly.
+Despite these steps, no BNEP (Bluetooth Network Encapsulation Protocol) adapter was showing up when using `ifconfig`. It appeared that the network setup was not being completed correctly.
 
-A review of the phone’s tether settings revealed that Bluetooth tethering was turned off. After re-enabling it and redoing the pairing and trusting process, the BNEP adapter finally appeared, and the Pi was accessible over Bluetooth.
+A review of the phone’s tether settings revealed that Bluetooth tethering had turned off for some unknown reason. After re-enabling it and redoing the manual pairing and trusting process, the BNEP adapter finally appeared.
 
 ## Resolving USB Connectivity Issues
 
-To further troubleshoot, I tested the Pi on another Windows machine that already had RNDIS drivers installed. This time, I used a pogo pin style USB adapter instead of the standard USB cable, which instantly resolved the driver issue—suggesting that the USB cable was faulty.
+To further troubleshoot, I tested the Pi on another Windows machine that already had RNDIS drivers installed. This time, I used a pogo pin style USB adapter instead of the standard USB cable, which instantly resolved the driver issue—suggesting that the USB cable was faulty or the port itself was bad.
 
-Returning to the fresh Windows 11 machine, I repeated the process with the correct cable, and the Pi was recognized correctly as a network device. I then configured the network parameters on the Windows machine and successfully accessed the Pwnagotchi’s web GUI. With both USB and Bluetooth tethering functional, the next goal was to make the setup portable.
+Returning to the fresh Windows 11 machine, I repeated the process with the correct cable, and the Pi was recognized correctly as a network device. I then configured the network parameters on the Windows machines ethernet adapter, utilizing the host internet sharing script and successfully accessed the Pwnagotchi’s web GUI. With both USB and Bluetooth tethering functional, the next goal was to make the setup portable.
 
 ## Achieving Portable Access
 
@@ -66,7 +65,7 @@ The portability requirement meant that accessing the Pwnagotchi via a phone was 
   ~~~
   ifconfig -a
   ~~~
-With the BNEP adapter visible and using the configured IP address, I disconnected the Ethernet over USB, rebooted with only power on the Pi, and confirmed that the web service was accessible via Bluetooth tethering on my phone.
+With the BNEP adapter visible and using the configured IP address, I disconnected the Ethernet over USB, rebooted using the power only micro-usb port on the Pi, and confirmed that the web service was accessible via Bluetooth tethering on my phone.
 
 ## Adding Custom Features and Plugins
 
@@ -79,7 +78,7 @@ Initially, access to certain directories over SFTP was restricted. Attempts to l
   ~~~
   nano /etc/pwnagotchi/config.toml
   ~~~
-The Pwnagotchi rebooted with the new configuration, but the device name was incorrect. Verifying and updating the hostname resolved this issue:
+The Pwnagotchi rebooted with the new configuration, but the device name was incorrect and displaying `Pwnag0dchi` now and changing the `config.toml` would no longer update the name being displayed. Verifying and updating the hostname resolved this issue:
   ~~~
   hostnamectl set-hostname <new_hostname>
   ~~~
@@ -95,4 +94,4 @@ As a final step, a backup of the setup was created using Win32 Disk Imager:
 
   # Using Win32 Disk Imager to create a backup image
 
-This completed the setup, providing a fully functional and portable Pwnagotchi system.
+This completed the setup, providing a fully functional and portable stealth Pwnagotchi system. Power is provided via a battery bank and the whole setup fits conveniently in a pocket or backpack.
