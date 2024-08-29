@@ -84,7 +84,7 @@ Initially, access to certain directories over SFTP was restricted. Attempts to l
   ~~~
   nano /etc/pwnagotchi/config.toml
   ~~~
-The Pwnagotchi rebooted with the new configuration, but the device name was incorrect and displaying `Pwnag0dchi` now and changing the `config.toml` would no longer update the name being displayed. Verifying and updating the hostname resolved this issue:
+The Pwnagotchi rebooted with the new configuration, but the device name was incorrect and displaying `Pwnag0dchi` now, changing the `config.toml` would no longer update the name being displayed. Verifying and updating the hostname resolved this issue:
   ~~~
   hostnamectl set-hostname <new_hostname>
   ~~~
