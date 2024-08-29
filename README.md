@@ -1,7 +1,5 @@
 # RPiZero2W-Pwnagotchi
 
-![pwnagotchi](https://github.com/AdamHayball/RPiZero2W-Pwnagotchi/blob/main/pwnyboi.png)
-
 The goal of this project was to set up a headless Pwnagotchi using a Raspberry Pi Zero 2 W, aiming for a more stealthy and portable build. This documentation is not intended as a guide, but rather to detail the challenges encountered during the setup and the methods used to overcome them.
 
 ## Bill of Materials
@@ -97,3 +95,5 @@ As a final step, a backup of the setup was created using Win32 Disk Imager:
   # Using Win32 Disk Imager to create a backup image
 
 This completed the setup, providing a fully functional and portable stealth Pwnagotchi system. Power is provided via a battery bank and the whole setup fits conveniently in a pocket or backpack.
+
+![pwnagotchi](https://github.com/AdamHayball/RPiZero2W-Pwnagotchi/blob/main/pwnyboi.png)
